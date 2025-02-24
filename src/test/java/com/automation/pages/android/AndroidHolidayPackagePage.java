@@ -67,12 +67,24 @@ public class AndroidHolidayPackagePage extends AndroidBasePage implements Holida
         while (cards.isEmpty()) {
             scroll();
             cards = driver.findElements(By.xpath("//android.widget.TextView[contains(@text, 'Nights')]/.."));
+            availablePackages = driver.findElements(By.xpath("//android.widget.TextView[contains(@text, 'Nights')]/../.."));
         }
 
         int startX = cards.getFirst().getLocation().getX();
         int startY = cards.getFirst().getLocation().getY();
 
         scroll(startX, startY);
+
+        while (true) {
+
+            WebElement option = availablePackages.getFirst().findElement(By.xpath(".//android.widget.TextView[@text='View Package']"));
+            if (option.getText().equalsIgnoreCase("view package")) {
+                option.click();
+                break;
+            }
+            scroll();
+
+        }
 
     }
 

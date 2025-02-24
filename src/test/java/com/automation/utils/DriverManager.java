@@ -3,6 +3,7 @@ package com.automation.utils;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.time.Duration;
@@ -13,7 +14,10 @@ public class DriverManager {
 
     public static void createDriver() {
         if (ConfigReader.getConfigValue("application.type").equals("web")) {
-            driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            //options.addArguments("--disable-notifications");
+            options.addArguments("--deny-permission-prompts");
+            driver = new ChromeDriver(options);
             driver.manage().window().maximize();
         } else {
             DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -26,7 +30,7 @@ public class DriverManager {
 
             driver = new AndroidDriver(capabilities);
         }
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
     }
 
     public static WebDriver getDriver() {

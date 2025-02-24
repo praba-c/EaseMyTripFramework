@@ -58,7 +58,7 @@ public class AndroidBasePage {
 
         sequence.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX/2, startY))
                 .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(finger.createPointerMove(Duration.ofSeconds(2), PointerInput.Origin.viewport(), width/2, height-1800))
+                .addAction(finger.createPointerMove(Duration.ofSeconds(2), PointerInput.Origin.viewport(), width/2, height-1400))
                 .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
         driver.perform(Collections.singletonList(sequence));

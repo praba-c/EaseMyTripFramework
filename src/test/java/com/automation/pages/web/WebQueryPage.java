@@ -13,7 +13,7 @@ public class WebQueryPage extends WebBasePage implements QueryPage {
     @FindBy(xpath = "//a[@class='button button-hero mt-4']")
     WebElement gotoHomeBtn;
 
-    String queryNumber = "";
+
 
     public boolean isQueryPageDisplayed() {
         return queryNum.isDisplayed();
