@@ -61,8 +61,8 @@ public class WebActivitiesListPage extends WebBasePage {
 
     public boolean verifySort() {
         for (int i=1;i<suggestedActivitiesPrices.size();++i) {
-            int prev = stringPriceValueToInt(suggestedActivitiesPrices.get(i-1).getText());
-            int curr = stringPriceValueToInt(suggestedActivitiesPrices.get(i).getText());
+            double prev = stringPriceValueToInt(suggestedActivitiesPrices.get(i-1).getText());
+            double curr = stringPriceValueToInt(suggestedActivitiesPrices.get(i).getText());
 
             if (curr < prev) {
                 return false;

@@ -12,11 +12,8 @@ public class DutyFreePage extends WebBasePage {
     @FindBy(xpath = "//div[@class='card-title h5']")
     List<WebElement> airportsList;
 
-    @FindBy(xpath = "//div[@class='btnText']")
+    @FindBy(xpath = "//div[@class='btnText']/h4")
     List<WebElement> pickupLocation;
-
-    @FindBy(xpath = "//div[@class='btnText']//p")
-    List<WebElement> confirmAge;
 
     @FindBy(xpath = "//span[@class='adl-label-arrow']")
     List<WebElement> categories;
@@ -45,8 +42,8 @@ public class DutyFreePage extends WebBasePage {
     @FindBy(xpath = "//button[text()='Sort']")
     WebElement sortBtn;
 
-    @FindBy(xpath = "//div[@class='sort-text']")
-    List <WebElement> sortOptions;
+    @FindBy(xpath = "//input[@type='radio']/following-sibling::label")
+    List<WebElement> sortOptions;
 
     @FindBy(xpath = "//h1[contains(text(),'Thiruvananthapuram')]")
     WebElement title;
@@ -70,39 +67,21 @@ public class DutyFreePage extends WebBasePage {
 
     public void selectPickupLocationAndConfirmAge(String location, String ageConfirm) {
 
-        if (pickupLocation.getFirst().getText().contains(ConfigReader.getConfigValue(location))) {
-            pickupLocation.getFirst().click();
-        } else {
-            pickupLocation.getLast().click();
-        }
-
-        if (confirmAge.getFirst().getText().contains(ConfigReader.getConfigValue(ageConfirm))) {
-            confirmAge.getFirst().click();
-        } else {
-            confirmAge.getLast().click();
-        }
-    }
-
-    public void sort(String sortOption) {
-        sortBtn.click();
-        for (WebElement element : sortOptions) {
-            if(element.getText().contains(ConfigReader.getConfigValue(sortOption))) {
+        for (WebElement element : pickupLocation) {
+            if (element.getText().contains(ConfigReader.getConfigValue(location))) {
                 element.click();
                 break;
             }
         }
-    }
 
-    public boolean verifySort() {
-        for (int i=1;i<priceList.size();++i) {
-            int prev = stringPriceValueToInt(priceList.get(i-1).getText());
-            int curr = stringPriceValueToInt(priceList.get(i).getText());
-
-            if (prev > curr) {
-                return false;
+        List<WebElement> confirmAge = driver.findElements(By.xpath("//div[@class='btnText']/h4"));
+        for (WebElement element : confirmAge) {
+            System.out.println(element.getText());
+            if (element.getText().contains(ConfigReader.getConfigValue(ageConfirm))) {
+                element.click();
+                break;
             }
         }
-        return true;
     }
 
     public boolean isProductsDisplayed() {
@@ -142,5 +121,43 @@ public class DutyFreePage extends WebBasePage {
     public void printDetails() {
         System.out.println(productTitle.getText());
         System.out.println(productPriceDetails.getText());
+    }
+
+    public void sort(String sortOption) {
+        sortBtn.click();
+        for (WebElement element : sortOptions) {
+            if (element.getText().equalsIgnoreCase(sortOption)) {
+                element.click();
+                break;
+            }
+        }
+        sortBtn.click();
+    }
+
+    public boolean verifySort(String sortOrder) {
+
+        if (sortOrder.equalsIgnoreCase("price low to high")) {
+
+            for (int i = 1; i < priceList.size(); ++i) {
+                double prev = stringPriceValueToInt(priceList.get(i - 1).getText());
+                double curr = stringPriceValueToInt(priceList.get(i).getText());
+
+                if (prev > curr) {
+                    return false;
+                }
+            }
+
+        } else {
+
+            for (int i = 1; i < priceList.size(); ++i) {
+                double prev = stringPriceValueToInt(priceList.get(i - 1).getText());
+                double curr = stringPriceValueToInt(priceList.get(i).getText());
+
+                if (prev < curr) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

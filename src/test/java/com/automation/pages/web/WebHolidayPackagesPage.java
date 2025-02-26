@@ -99,6 +99,5 @@ public class WebHolidayPackagesPage extends WebBasePage implements HolidayPackag
             }
         }
         driver.findElement(By.xpath("//div[@ng-click='GoDetail(lst)']/img")).click();
-
     }
 }

@@ -3,6 +3,7 @@ package com.automation.pages.android;
 import com.automation.utils.DriverManager;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.PageFactory;
@@ -16,6 +17,7 @@ public class AndroidBasePage {
     static AppiumDriver driver;
     static WebDriverWait wait;
     Dimension dimension;
+    static String flightOption;
 
     public AndroidBasePage() {
         driver = (AppiumDriver) DriverManager.getDriver();
@@ -24,6 +26,9 @@ public class AndroidBasePage {
         dimension = driver.manage().window().getSize();
     }
 
+    public void setImplicitWait(int sec) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(sec));
+    }
     public void pause(int millis) {
         try {
             Thread.sleep(millis);
@@ -42,7 +47,7 @@ public class AndroidBasePage {
 
         sequence.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), width/2, height-100))
                 .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(finger.createPointerMove(Duration.ofSeconds(2), PointerInput.Origin.viewport(), width/2, height/2))
+                .addAction(finger.createPointerMove(Duration.ofSeconds(3), PointerInput.Origin.viewport(), width/2, height/2))
                 .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
         driver.perform(Collections.singletonList(sequence));
@@ -62,5 +67,16 @@ public class AndroidBasePage {
                 .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
         driver.perform(Collections.singletonList(sequence));
+    }
+
+    public boolean isPresent(WebElement element) {
+        try {
+            setImplicitWait(2);
+            return element.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        } finally {
+            setImplicitWait(60);
+        }
     }
 }

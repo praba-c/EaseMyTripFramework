@@ -4,6 +4,7 @@ import com.automation.pages.android.AndroidPackagePage;
 import com.automation.pages.ui.PackagePage;
 import com.automation.pages.web.WebPackagePage;
 import com.automation.utils.ConfigReader;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -22,8 +23,8 @@ public class PackageSteps {
         }
     }
 
-    @Then("verify packages page is displayed and print the details")
-    public void verifyPackagesPageIsDisplayedAndPrintTheDetails() {
+    @Then("verify package page is displayed and print the details")
+    public void verifyPackagePageIsDisplayedAndPrintTheDetails() {
         Assert.assertTrue(packagePage.isPackagePageDisplayed());
         packagePage.printDetails();
     }
@@ -46,5 +47,16 @@ public class PackageSteps {
     @Then("print the price after changing the hotels and rooms")
     public void printThePriceAfterChangingTheHotelsAndRooms() {
         packagePage.printPriceDetails();
+    }
+
+    @When("user clicks on book now button and fill the details:")
+    public void userClicksOnBookNowButtonAndFillTheDetails(DataTable dataTable) {
+        packagePage.fillDetails(dataTable);
+        packagePage.clickOnBookNowBtn();
+    }
+
+    @And("clicks continue booking button")
+    public void clicksContinueBookingButton() {
+        packagePage.clickOnContinueBookingBtn();
     }
 }

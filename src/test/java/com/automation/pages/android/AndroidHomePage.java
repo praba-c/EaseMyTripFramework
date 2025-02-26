@@ -46,6 +46,12 @@ public class AndroidHomePage extends AndroidBasePage implements HomePage {
     @FindBy(xpath = "//android.widget.TextView[@text='Logout']")
     WebElement logoutBtn;
 
+    @FindBy(xpath = "//android.widget.TextView[@text='Explore Bharat']")
+    WebElement exploreBharatTab;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Activities']")
+    WebElement activitiesTab;
+
     public boolean isHomePageDisplayed() {
         return holidaysTab.isDisplayed();
     }
@@ -58,7 +64,9 @@ public class AndroidHomePage extends AndroidBasePage implements HomePage {
 
     }
 
-    public void clickOnActivitiesTab() {}
+    public void clickOnActivitiesTab() {
+        activitiesTab.click();
+    }
 
 
     public void clickOnLoginBtn() {
@@ -111,5 +119,9 @@ public class AndroidHomePage extends AndroidBasePage implements HomePage {
     public boolean isUserLoggedOut() {
         toggleBar.click();
         return loginBtn.isDisplayed();
+    }
+
+    public void clickOnExploreBharatTab() {
+        exploreBharatTab.click();
     }
 }

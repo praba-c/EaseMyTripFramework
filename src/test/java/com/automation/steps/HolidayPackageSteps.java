@@ -1,6 +1,6 @@
 package com.automation.steps;
 
-import com.automation.pages.android.AndroidHolidayPackagePage;
+import com.automation.pages.android.AndroidHolidayPackagesPage;
 import com.automation.pages.ui.HolidayPackagePage;
 import com.automation.pages.web.WebHolidayPackagesPage;
 import com.automation.utils.ConfigReader;
@@ -18,7 +18,7 @@ public class HolidayPackageSteps {
         if (ConfigReader.getConfigValue("application.type").equals("web")) {
             holidayPackagePage = new WebHolidayPackagesPage();
         } else {
-            holidayPackagePage = new AndroidHolidayPackagePage();
+            holidayPackagePage = new AndroidHolidayPackagesPage();
         }
     }
 

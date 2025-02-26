@@ -84,7 +84,8 @@ public class WebPackagePage extends WebBasePage implements PackagePage {
     }
 
     public void clickOnEnquiryBtnAndFillDetails(String name, String mobileNo, String mail) {
-        pause(3000);
+        pause(4000);
+        wait.until(ExpectedConditions.elementToBeClickable(enquiryBtn));
         enquiryBtn.click();
         nameInput.sendKeys(ConfigReader.getConfigValue(name));
         mobileInput.sendKeys(ConfigReader.getConfigValue(mobileNo));
@@ -102,7 +103,7 @@ public class WebPackagePage extends WebBasePage implements PackagePage {
     public void customizeRooms(String sortOption) {
         changeHotelBtn.click();
 
-        pause(4000);
+        pause(6000);
         sortBtn.click();
 
         for (WebElement option : sortOptions) {

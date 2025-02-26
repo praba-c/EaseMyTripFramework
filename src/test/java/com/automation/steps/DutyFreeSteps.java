@@ -82,8 +82,8 @@ public class DutyFreeSteps {
         dutyFreePage.sort(sortOption);
     }
 
-    @Then("verify products are sorted")
-    public void verifyProductsAreSorted() {
-        Assert.assertTrue(dutyFreePage.verifySort());
+    @Then("verify products are sorted by {string}")
+    public void verifyProductsAreSortedBy(String sortOrder) {
+        Assert.assertTrue(dutyFreePage.verifySort(sortOrder));
     }
 }

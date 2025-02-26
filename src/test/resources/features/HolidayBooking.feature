@@ -1,4 +1,4 @@
-Feature: Validate End To End Functionalities
+Feature: Validate End To End Functionalities Of Holiday Booking
 
   Background:
 
@@ -11,25 +11,24 @@ Feature: Validate End To End Functionalities
     When user clicks on from city and enters the "fromCity"
     And user clicks on more filters button and add a theme as "theme"
 
-  Scenario: Verify Holiday Booking scenarios
+  Scenario: Verify Holiday Booking scenarios without flights
 
     And apply filters as sort to "sortOption" and package type as "without flights"
     Then verify list of packages are displayed
     When user select the package with recommended tag
-    Then verify packages page is displayed and print the details
+    Then verify package page is displayed and print the details
     When user clicks on enquiry button and fill the "name" "mobile" and "email"
     And clicks enquiry button
     Then verify query number is generated
     When user clicks on goto homepage btn
     Then verify user is on the home page
 
-
-  Scenario: Verify Holiday Booking
+  Scenario: Verify Holiday Booking with flights
 
     And apply filters as sort to "sortOption" and package type as "with flights"
     Then verify list of packages are displayed
     When user selects the package
-    Then verify packages page is displayed and print the details
+    Then verify package page is displayed and print the details
     When user customizes the hotels and rooms as "hotelRoomSortOption"
     Then print the price after changing the hotels and rooms
     When user clicks on enquiry button and fill the "name" "mobile" and "email"

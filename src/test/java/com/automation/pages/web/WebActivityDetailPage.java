@@ -44,7 +44,7 @@ public class WebActivityDetailPage extends WebBasePage {
     }
 
     public void selectDate(String inputDate) {
-        pause(3000);
+        pause(5000);
         wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//div[@class='ldr_cnt']"))));
         dateBtn.click();
 

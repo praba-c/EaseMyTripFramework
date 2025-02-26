@@ -1,5 +1,6 @@
 package com.automation.pages.web;
 
+import com.automation.pages.ui.ExploreBharatPage;
 import com.automation.utils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class ExploreBharatPage extends WebBasePage {
+public class WebExploreBharatPage extends WebBasePage implements ExploreBharatPage {
 
     @FindBy(xpath = "//div[@id='exp']//div[@class='btitle']")
     WebElement title;

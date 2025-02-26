@@ -37,4 +37,6 @@ public interface HomePage {
     }
 
     default void enterPassword(String password) {}
+
+    void clickOnExploreBharatTab();
 }

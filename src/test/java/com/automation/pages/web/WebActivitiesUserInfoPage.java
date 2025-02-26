@@ -57,14 +57,14 @@ public class WebActivitiesUserInfoPage extends WebBasePage {
             String firstNameValue = data.get(i).get("firstName");
             String lastNameValue = data.get(i).get("lastName");
 
-            //titleInputs.get(i).click();
+            titleInputs.get(i).click();
 
-//            for (WebElement element : prefix) {
-//                if (element.getText().contains(prefixValue)) {
-//                    element.click();
-//                    break;
-//                }
-//            }
+            for (WebElement element : prefix) {
+                if (element.getText().contains(prefixValue)) {
+                    element.click();
+                    break;
+                }
+            }
 
             firstNameInputs.get(i).sendKeys(firstNameValue);
             lastNameInputs.get(i).sendKeys(lastNameValue);

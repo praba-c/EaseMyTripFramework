@@ -1,5 +1,7 @@
 package com.automation.pages.ui;
 
+import io.cucumber.datatable.DataTable;
+
 public interface PackagePage {
 
     void printDetails();
@@ -14,5 +16,9 @@ public interface PackagePage {
 
     void printPriceDetails();
 
+    default void clickOnBookNowBtn(){}
 
+    default void fillDetails(DataTable dataTable) {}
+
+    default void clickOnContinueBookingBtn(){}
 }

@@ -1,7 +1,12 @@
 package com.automation.steps;
 
-import com.automation.pages.web.ExploreBharatPage;
+import com.automation.pages.android.AndroidExploreBharatPage;
+import com.automation.pages.android.AndroidHomePage;
+import com.automation.pages.ui.ExploreBharatPage;
+import com.automation.pages.ui.HomePage;
+import com.automation.pages.web.WebExploreBharatPage;
 import com.automation.pages.web.WebHomePage;
+import com.automation.utils.ConfigReader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,8 +14,19 @@ import org.junit.Assert;
 
 public class ExploreBharatSteps {
 
-    WebHomePage homePage = new WebHomePage();
-    ExploreBharatPage exploreBharatPage = new ExploreBharatPage();
+    HomePage homePage;
+    ExploreBharatPage exploreBharatPage;
+
+    public ExploreBharatSteps() {
+        if (ConfigReader.getConfigValue("application.type").equals("web")) {
+            homePage = new WebHomePage();
+            exploreBharatPage = new WebExploreBharatPage();
+        }
+        else {
+            homePage = new AndroidHomePage();
+            exploreBharatPage = new AndroidExploreBharatPage();
+        }
+    }
 
     @When("user clicks on the Explore Bharat tab")
     public void userClicksOnTheExploreBharatTab() {

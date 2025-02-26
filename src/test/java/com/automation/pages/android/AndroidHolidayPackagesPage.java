@@ -2,13 +2,12 @@ package com.automation.pages.android;
 
 import com.automation.pages.ui.HolidayPackagePage;
 import com.automation.utils.ConfigReader;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class AndroidHolidayPackagePage extends AndroidBasePage implements HolidayPackagePage {
+public class AndroidHolidayPackagesPage extends AndroidBasePage implements HolidayPackagePage {
 
     @FindBy(id = "com.easemytrip.android:id/tvSearchTittle")
     WebElement title;
@@ -43,6 +42,12 @@ public class AndroidHolidayPackagePage extends AndroidBasePage implements Holida
     @FindBy(xpath = "//android.widget.TextView[contains(@text, 'Nights')]/..")
     List<WebElement> cards;
 
+    @FindBy(xpath = "//android.widget.TextView[@text='View Package']")
+    WebElement viewPackageBtn;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Customize & Book']")
+    WebElement customizeAndBookBtn;
+
     String FROM_CITY_XPATH = "//android.widget.ListView//android.widget.TextView[@text='%s']";
 
     public boolean isTourPackagesPageDisplayed() {
@@ -54,38 +59,28 @@ public class AndroidHolidayPackagePage extends AndroidBasePage implements Holida
     }
 
     public void filterOptions(String sortOrder, String packageType) {
+        flightOption = packageType;
         sortByBtn.click();
 
         for (WebElement element : sortOptions) {
 
-            if (element.getText().contains(ConfigReader.getConfigValue(sortOrder))) {
+            if (element.getText().equalsIgnoreCase(ConfigReader.getConfigValue(sortOrder))) {
                 element.click();
                 break;
             }
         }
 
-        while (cards.isEmpty()) {
-            scroll();
-            cards = driver.findElements(By.xpath("//android.widget.TextView[contains(@text, 'Nights')]/.."));
-            availablePackages = driver.findElements(By.xpath("//android.widget.TextView[contains(@text, 'Nights')]/../.."));
-        }
-
-        int startX = cards.getFirst().getLocation().getX();
-        int startY = cards.getFirst().getLocation().getY();
-
-        scroll(startX, startY);
-
-        while (true) {
-
-            WebElement option = availablePackages.getFirst().findElement(By.xpath(".//android.widget.TextView[@text='View Package']"));
-            if (option.getText().equalsIgnoreCase("view package")) {
-                option.click();
-                break;
+        if (packageType.equalsIgnoreCase("with flight")) {
+            while (!isPresent(viewPackageBtn)) {
+                scroll();
             }
-            scroll();
-
+            viewPackageBtn.click();
+        } else {
+            while (!isPresent(customizeAndBookBtn)) {
+                scroll();
+            }
+            customizeAndBookBtn.click();
         }
-
     }
 
     public void moreFilterOptions(String theme) {
@@ -106,6 +101,8 @@ public class AndroidHolidayPackagePage extends AndroidBasePage implements Holida
         return true;
     }
 
-    public void selectRecommendedPackage() {}
+    public void selectRecommendedPackage() {
+        viewPackageBtn.click();
+    }
 
 }
