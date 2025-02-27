@@ -1,14 +1,13 @@
 package com.automation.pages.web;
 
 import com.automation.pages.ui.HolidayPackagePage;
-import com.automation.utils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class WebHolidayPackagesPage extends WebBasePage implements HolidayPackagePage {
+public class WebHolidaysPackagesPage extends WebBasePage implements HolidayPackagePage {
 
     @FindBy(xpath = "//h1[contains(text(), 'Holiday Packages')]")
     WebElement title;
@@ -34,9 +33,6 @@ public class WebHolidayPackagesPage extends WebBasePage implements HolidayPackag
     @FindBy(xpath = "//div[@class='ritbtn']/a[text()='View Package  ']")
     List<WebElement> availablePackages;
 
-    @FindBy(xpath = "//div[@class='ritbtn']/a[text()='View Package  ']/ancestor::div[2]/preceding-sibling::div[1]//div[@class='pkgName ng-binding']")
-    List<WebElement> availablePackagesNames;
-
     @FindBy(xpath = "//div[@class='ritbtn']/a[text()='View Package  ']/ancestor::div[3]/div/span")
     List<WebElement> cards;
 
@@ -50,7 +46,7 @@ public class WebHolidayPackagesPage extends WebBasePage implements HolidayPackag
         fromCityInput.click();
 
         for (WebElement city : availableCitiesList) {
-            if (city.getText().equalsIgnoreCase(ConfigReader.getConfigValue(inputCity))) {
+            if (city.getText().equalsIgnoreCase(inputCity)) {
                 city.click();
                 break;
             }
@@ -63,7 +59,7 @@ public class WebHolidayPackagesPage extends WebBasePage implements HolidayPackag
         flightOption = packageType;
 
         sortOptions.click();
-        String xpath = String.format(option, ConfigReader.getConfigValue(sortOrder));
+        String xpath = String.format(option, sortOrder);
         driver.findElement(By.xpath(xpath)).click();
 
         for (WebElement type : packageTypes) {
@@ -78,7 +74,7 @@ public class WebHolidayPackagesPage extends WebBasePage implements HolidayPackag
         moreFilterBtn.click();
 
         for (WebElement element : availableThemes) {
-            if (element.getText().equalsIgnoreCase(ConfigReader.getConfigValue(theme))) {
+            if (element.getText().equalsIgnoreCase(theme)) {
                 element.click();
                 break;
             }

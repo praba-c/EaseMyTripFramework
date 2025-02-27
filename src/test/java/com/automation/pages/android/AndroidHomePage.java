@@ -7,6 +7,12 @@ import org.openqa.selenium.support.FindBy;
 
 public class AndroidHomePage extends AndroidBasePage implements HomePage {
 
+    @FindBy(id = "com.google.android.gms:id/cancel")
+    WebElement googlePopupCloseBtn;
+
+    @FindBy(id = "com.easemytrip.android:id/iv_close")
+    WebElement loginPopupClosBtn;
+
     @FindBy(xpath = "//android.widget.TextView[@text='Holidays']")
     WebElement holidaysTab;
 
@@ -61,7 +67,10 @@ public class AndroidHomePage extends AndroidBasePage implements HomePage {
     }
 
     public void openApplication() {
-
+        if (isPresent(googlePopupCloseBtn)) {
+            googlePopupCloseBtn.click();
+            loginPopupClosBtn.click();
+        }
     }
 
     public void clickOnActivitiesTab() {

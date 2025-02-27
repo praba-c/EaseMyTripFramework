@@ -71,7 +71,7 @@ public class AndroidBasePage {
 
     public boolean isPresent(WebElement element) {
         try {
-            setImplicitWait(2);
+            setImplicitWait(5);
             return element.isDisplayed();
         } catch (Exception e) {
             return false;

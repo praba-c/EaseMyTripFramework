@@ -1,9 +1,6 @@
 package com.automation.steps;
 
-import com.automation.pages.android.AndroidPackagePage;
-import com.automation.pages.ui.PackagePage;
 import com.automation.pages.web.WebPackagePage;
-import com.automation.utils.ConfigReader;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -12,16 +9,7 @@ import org.junit.Assert;
 
 public class PackageSteps {
 
-    PackagePage packagePage;
-
-    public PackageSteps() {
-
-        if (ConfigReader.getConfigValue("application.type").equals("web")) {
-            packagePage = new WebPackagePage();
-        } else {
-            packagePage = new AndroidPackagePage();
-        }
-    }
+    WebPackagePage packagePage = new WebPackagePage();
 
     @Then("verify package page is displayed and print the details")
     public void verifyPackagePageIsDisplayedAndPrintTheDetails() {

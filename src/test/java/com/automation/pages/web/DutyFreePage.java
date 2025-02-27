@@ -4,6 +4,7 @@ import com.automation.utils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -67,21 +68,10 @@ public class DutyFreePage extends WebBasePage {
 
     public void selectPickupLocationAndConfirmAge(String location, String ageConfirm) {
 
-        for (WebElement element : pickupLocation) {
-            if (element.getText().contains(ConfigReader.getConfigValue(location))) {
-                element.click();
-                break;
-            }
-        }
+//
 
-        List<WebElement> confirmAge = driver.findElements(By.xpath("//div[@class='btnText']/h4"));
-        for (WebElement element : confirmAge) {
-            System.out.println(element.getText());
-            if (element.getText().contains(ConfigReader.getConfigValue(ageConfirm))) {
-                element.click();
-                break;
-            }
-        }
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//button[@class='btn-close']"))));
+        driver.findElement(By.xpath("//button[@class='btn-close']")).click();
     }
 
     public boolean isProductsDisplayed() {

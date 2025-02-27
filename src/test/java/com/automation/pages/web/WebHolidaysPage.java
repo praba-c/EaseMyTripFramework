@@ -1,7 +1,6 @@
 package com.automation.pages.web;
 
 import com.automation.pages.ui.HolidayPage;
-import com.automation.utils.ConfigReader;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -17,11 +16,12 @@ public class WebHolidaysPage extends WebBasePage implements HolidayPage {
 
     public void searchCity(String cityName) {
 
-        searchBar.sendKeys(ConfigReader.getConfigValue(cityName));
+        searchBar.sendKeys(cityName);
+        pause(2000);
 
         for (WebElement city : citiesResultList) {
 
-            if (city.getText().equalsIgnoreCase(ConfigReader.getConfigValue(cityName))) {
+            if (city.getText().equalsIgnoreCase(cityName)) {
                 city.click();
                 break;
             }

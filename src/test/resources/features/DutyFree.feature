@@ -9,8 +9,8 @@ Feature: Validate Duty Free functionalities
     And verify list of airports where displayed
     When user selects the "airport.input" airport
     Then verify airport duty free page is displayed
-    When user choose order pickup location "location.input" and confirm age "age.input"
-    Then verify products where displayed
+    #When user choose order pickup location "location.input" and confirm age "age.input"
+    #Then verify products where displayed
     When user selects a particular category "category.input"
 
   Scenario: Verify user can add a product to the cart

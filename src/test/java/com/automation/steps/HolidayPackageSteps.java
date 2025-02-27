@@ -1,9 +1,6 @@
 package com.automation.steps;
 
-import com.automation.pages.android.AndroidHolidayPackagesPage;
-import com.automation.pages.ui.HolidayPackagePage;
-import com.automation.pages.web.WebHolidayPackagesPage;
-import com.automation.utils.ConfigReader;
+import com.automation.pages.web.WebHolidaysPackagesPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,16 +8,7 @@ import org.junit.Assert;
 
 public class HolidayPackageSteps {
 
-    HolidayPackagePage holidayPackagePage;
-
-    public HolidayPackageSteps() {
-
-        if (ConfigReader.getConfigValue("application.type").equals("web")) {
-            holidayPackagePage = new WebHolidayPackagesPage();
-        } else {
-            holidayPackagePage = new AndroidHolidayPackagesPage();
-        }
-    }
+    WebHolidaysPackagesPage holidayPackagePage = new WebHolidaysPackagesPage();
 
     @Then("verify tour packages page is displayed")
     public void verify_tour_packages_page_is_displayed() {

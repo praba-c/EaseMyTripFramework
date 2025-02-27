@@ -14,7 +14,7 @@ public class WebExploreBharatPage extends WebBasePage implements ExploreBharatPa
     @FindBy(xpath = "//div[@id='exp']//div[@class='btitle']")
     WebElement title;
 
-    @FindBy(xpath = "(//button[@class='owl-next'])[2]")
+    @FindBy(xpath = "//button[@class='owl-next']")
     WebElement nextBtn;
 
     @FindBy(xpath = "//div[@class='owl-item active']//p[@class='ttl']")
@@ -34,6 +34,7 @@ public class WebExploreBharatPage extends WebBasePage implements ExploreBharatPa
 
         JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
         jsExecutor.executeScript("arguments[0].scrollIntoView(true);", title);
+
         outerLoop:
         while (true) {
             for (WebElement activity : activities) {
