@@ -20,9 +20,9 @@ public class HolidayPackageSteps {
         holidayPackagePage.selectFromCity(fromCity);
     }
 
-    @When("apply filters as sort to {string} and package type as {string}")
-    public void apply_filters_as_sort_to_and_package_type_as(String sortOption, String packageType) {
-        holidayPackagePage.filterOptions(sortOption, packageType);
+    @When("apply filters as sort to {string}")
+    public void apply_filters_as_sort_to(String sortOption) {
+        holidayPackagePage.filterOptions(sortOption);
     }
 
     @When("user clicks on more filters button and add a theme as {string}")

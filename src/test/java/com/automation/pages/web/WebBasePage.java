@@ -40,12 +40,11 @@ public class WebBasePage {
         jsExecutor.executeScript("arguments[0].click();", element);
     }
 
-    public double stringPriceValueToInt(String price) {
+    public double stringPriceValueToDouble(String price) {
         if (price.isEmpty()) {
             return 0;
         }
         String priceValue = price.replace("₹", "").replace(",", "");
-        System.out.println(priceValue);
         return Double.parseDouble(priceValue.trim());
     }
 }

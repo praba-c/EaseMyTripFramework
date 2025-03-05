@@ -34,7 +34,7 @@ public class AndroidHomePage extends AndroidBasePage implements HomePage {
     @FindBy(xpath = "//android.widget.TextView[contains(@text,'Hi')]")
     WebElement profile;
 
-    @FindBy(xpath = "//android.widget.ImageView[@content-desc='Cancel']")
+    @FindBy(xpath = "//android.widget.ImageView")
     WebElement closeBtn;
 
     @FindBy(xpath = "//android.widget.TextView[@resource-id='com.google.android.gms:id/matched_sms']")
@@ -58,6 +58,26 @@ public class AndroidHomePage extends AndroidBasePage implements HomePage {
     @FindBy(xpath = "//android.widget.TextView[@text='Activities']")
     WebElement activitiesTab;
 
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.easemytrip.android:id/txtLoginAuthOption']")
+    WebElement passwordOptionBtn;
+
+    @FindBy(xpath = "//android.widget.EditText[@resource-id='com.easemytrip.android:id/txtAuthInput']")
+    WebElement passwordInputTab;
+
+    @FindBy(xpath = "//android.widget.Button[@resource-id='com.easemytrip.android:id/btn_authenticate']")
+    WebElement passwordLoginBtn;
+
+    @FindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[1]/android.view.View[2]/android.view.View")
+    WebElement expandBtn;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Airport Service']")
+    WebElement airportServicesTab;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Duty Free']")
+    WebElement dutyFreeTab;
+
+    boolean pass = false;
+
     public boolean isHomePageDisplayed() {
         return holidaysTab.isDisplayed();
     }
@@ -77,14 +97,13 @@ public class AndroidHomePage extends AndroidBasePage implements HomePage {
         activitiesTab.click();
     }
 
-
     public void clickOnLoginBtn() {
         toggleBar.click();
         loginBtn.click();
     }
 
     public boolean isPopupDisplayed() {
-        closeBtn.click();
+        googlePopupCloseBtn.click();
         return inputTextBar.isDisplayed();
     }
 
@@ -106,8 +125,12 @@ public class AndroidHomePage extends AndroidBasePage implements HomePage {
         otpInputField.sendKeys(otp);
     }
 
-    public void clickOnOtpLoginBtn() {
-        otpLoginBtn.click();
+    public void clickOnOtpOrPasswordLoginBtn() {
+        if (pass) {
+            passwordLoginBtn.click();
+        } else {
+            otpLoginBtn.click();
+        }
     }
 
     public boolean isUserLoggedIn() {
@@ -116,6 +139,7 @@ public class AndroidHomePage extends AndroidBasePage implements HomePage {
     }
 
     public void clickOnProfileTab() {
+        closeBtn.click();
         toggleBar.click();
     }
 
@@ -130,7 +154,20 @@ public class AndroidHomePage extends AndroidBasePage implements HomePage {
         return loginBtn.isDisplayed();
     }
 
+    public boolean isPasswordOptionDisplayed() {
+        return passwordOptionBtn.isDisplayed();
+    }
+
+    public void enterPassword(String password) {
+        passwordOptionBtn.click();
+        denyBtn.click();
+        passwordInputTab.sendKeys(ConfigReader.getConfigValue(password));
+        pass = true;
+    }
+
     public void clickOnExploreBharatTab() {
         exploreBharatTab.click();
     }
+
+
 }

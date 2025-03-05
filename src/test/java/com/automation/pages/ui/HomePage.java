@@ -22,7 +22,7 @@ public interface HomePage {
 
     void enterOtp();
 
-    void clickOnOtpLoginBtn();
+    void clickOnOtpOrPasswordLoginBtn();
 
     boolean isUserLoggedIn();
 
@@ -32,11 +32,9 @@ public interface HomePage {
 
     boolean isUserLoggedOut();
 
-    default boolean isPasswordOptionDisplayed() {
-        return false;
-    }
+    boolean isPasswordOptionDisplayed();
 
-    default void enterPassword(String password) {}
+    void enterPassword(String password);
 
     void clickOnExploreBharatTab();
 }

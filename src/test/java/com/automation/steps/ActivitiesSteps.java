@@ -9,7 +9,6 @@ public class ActivitiesSteps {
 
     WebActivitiesPage webActivitiesPage = new WebActivitiesPage();
 
-
     @Then("activities page is displayed")
     public void activitiesPageIsDisplayed() {
         Assert.assertTrue(webActivitiesPage.isActivitiesPageDisplayed());

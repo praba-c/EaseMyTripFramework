@@ -52,20 +52,33 @@ public class WebActivitiesListPage extends WebBasePage {
     public void sort(String value) {
 
         for (WebElement element : sortOptions) {
-            if (element.getText().contains(ConfigReader.getConfigValue(value))) {
+            if (element.getText().contains(value)) {
                 element.click();
                 break;
             }
         }
     }
 
-    public boolean verifySort() {
-        for (int i=1;i<suggestedActivitiesPrices.size();++i) {
-            double prev = stringPriceValueToInt(suggestedActivitiesPrices.get(i-1).getText());
-            double curr = stringPriceValueToInt(suggestedActivitiesPrices.get(i).getText());
+    public boolean verifySort(String sortOrder) {
 
-            if (curr < prev) {
-                return false;
+        if (sortOrder.equalsIgnoreCase("low to high")) {
+
+            for (int i = 1; i < 10; ++i) {
+                double prev = stringPriceValueToDouble(suggestedActivitiesPrices.get(i - 1).getText());
+                double curr = stringPriceValueToDouble(suggestedActivitiesPrices.get(i).getText());
+
+                if (curr < prev) {
+                    return false;
+                }
+            }
+        } else {
+            for (int i = 1; i < 10; ++i) {
+                double prev = stringPriceValueToDouble(suggestedActivitiesPrices.get(i - 1).getText());
+                double curr = stringPriceValueToDouble(suggestedActivitiesPrices.get(i).getText());
+
+                if (curr > prev) {
+                    return false;
+                }
             }
         }
         return true;

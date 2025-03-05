@@ -4,6 +4,7 @@ import com.automation.pages.ui.HomePage;
 import com.automation.utils.ConfigReader;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.Set;
 
@@ -34,10 +35,10 @@ public class WebHomePage extends WebBasePage implements HomePage {
     @FindBy(id = "txtEmail")
     WebElement mobileOrEmailInputBar;
 
-    @FindBy(id = "shwotp")
+    @FindBy(xpath = "//div[@class='_inpwdth']/input")
     WebElement continueBtn;
 
-    @FindBy(xpath = "(//input[@value='Login'])[1]")
+    @FindBy(xpath = "//input[@id='OtpLgnBtn']")
     WebElement otpLoginBtn;
 
     @FindBy(xpath = "(//input[@value='Login'])[2]")
@@ -93,6 +94,7 @@ public class WebHomePage extends WebBasePage implements HomePage {
     }
 
     public boolean isOtpGenerated() {
+        wait.until(ExpectedConditions.visibilityOf(otpLoginBtn));
         return otpLoginBtn.isDisplayed();
     }
 
@@ -100,7 +102,7 @@ public class WebHomePage extends WebBasePage implements HomePage {
         pause(20000);
     }
 
-    public void clickOnOtpLoginBtn() {
+    public void clickOnOtpOrPasswordLoginBtn() {
         if (pass) {
             passwordLoginBtn.click();
         } else {
@@ -126,12 +128,13 @@ public class WebHomePage extends WebBasePage implements HomePage {
     }
 
     public boolean isPasswordOptionDisplayed() {
+        wait.until(ExpectedConditions.visibilityOf(passwordOptionBtn));
         return passwordOptionBtn.isDisplayed();
     }
 
     public void enterPassword(String password) {
         passwordOptionBtn.click();
-        passwordInputTab.sendKeys(password);
+        passwordInputTab.sendKeys(ConfigReader.getConfigValue(password));
         pass = true;
     }
 

@@ -129,8 +129,8 @@ public class DutyFreePage extends WebBasePage {
         if (sortOrder.equalsIgnoreCase("price low to high")) {
 
             for (int i = 1; i < priceList.size(); ++i) {
-                double prev = stringPriceValueToInt(priceList.get(i - 1).getText());
-                double curr = stringPriceValueToInt(priceList.get(i).getText());
+                double prev = stringPriceValueToDouble(priceList.get(i - 1).getText());
+                double curr = stringPriceValueToDouble(priceList.get(i).getText());
 
                 if (prev > curr) {
                     return false;
@@ -140,8 +140,8 @@ public class DutyFreePage extends WebBasePage {
         } else {
 
             for (int i = 1; i < priceList.size(); ++i) {
-                double prev = stringPriceValueToInt(priceList.get(i - 1).getText());
-                double curr = stringPriceValueToInt(priceList.get(i).getText());
+                double prev = stringPriceValueToDouble(priceList.get(i - 1).getText());
+                double curr = stringPriceValueToDouble(priceList.get(i).getText());
 
                 if (prev < curr) {
                     return false;

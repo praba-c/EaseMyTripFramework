@@ -70,6 +70,13 @@ public class WebHolidaysPackagesPage extends WebBasePage implements HolidayPacka
         }
     }
 
+    public void filterOptions(String sortOrder) {
+
+        sortOptions.click();
+        String xpath = String.format(option, sortOrder);
+        driver.findElement(By.xpath(xpath)).click();
+    }
+
     public void moreFilterOptions(String theme) {
         moreFilterBtn.click();
 

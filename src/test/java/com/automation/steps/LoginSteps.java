@@ -54,7 +54,7 @@ public class LoginSteps {
 
     @And("clicks on login button")
     public void clicksOnLoginButton() {
-        homePage.clickOnOtpLoginBtn();
+        homePage.clickOnOtpOrPasswordLoginBtn();
     }
 
     @Then("verify user is logged in")

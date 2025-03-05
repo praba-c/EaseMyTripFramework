@@ -16,12 +16,10 @@ public class ActivitiesUserInfoSteps {
         Assert.assertTrue(activitiesUserInfoPage.isUserInfoPageDisplayed());
     }
 
-
     @When("user fills the details:")
     public void userFillsTheLastNameAsAndFirstNameAs(DataTable dataTable) {
         activitiesUserInfoPage.fillUserDetails(dataTable);
     }
-
 
     @And("other details {string}, {string}, {string} and {string}")
     public void otherDetailsAnd(String mobile, String email, String panName, String panNumber) {

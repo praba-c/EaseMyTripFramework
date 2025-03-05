@@ -9,7 +9,6 @@ Feature: Validate Login Ang Logout Functionalities
     When user enters a valid mobile number or email "validEmailOrMobile"
     And user clicks on the continue button
 
-
   Scenario: Verify user can login with otp
 
     Then verify the system sends an OTP to the provided mobile number or email
@@ -17,14 +16,12 @@ Feature: Validate Login Ang Logout Functionalities
     And clicks on login button
     Then verify user is logged in
 
-
   Scenario: Verify user can login with password
 
     Then verify the system ask password for logging in
-    When user selects the password option and enters the "password"
+    When user selects the password option and enters the "loginPassword"
     And clicks on login button
     Then verify user is logged in
-
 
   Scenario: Verify user can logout
 

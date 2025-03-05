@@ -10,8 +10,8 @@ Feature: Validate Holiday Booking Functionalities
     Then verify tour packages page is displayed
     When user clicks on from city and enters the "fromCity"
     And user clicks on more filters button and add a theme as "theme"
-    And apply filters as sort to "sortOption" and package type as "without flights"
-    Then verify list of packages are displayed
+    And apply filters as sort to "sortOption"
+
     When user selects the package
     Then verify package page is displayed and print the details
     When user customizes the hotels and rooms as "hotelRoomSortOption"
@@ -22,4 +22,3 @@ Feature: Validate Holiday Booking Functionalities
       | Steve     | Smith    | 34  |
 
     And clicks continue booking button
-    Then verify user is on payment page

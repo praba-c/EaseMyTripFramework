@@ -25,9 +25,9 @@ public class ActivitiesListSteps {
         activitiesListPage.sort(sortOption);
     }
 
-    @Then("verify suggestions are sorted")
-    public void verifySuggestionsAreSorted() {
-        Assert.assertTrue(activitiesListPage.verifySort());
+    @Then("verify suggestions are sorted based on {string}")
+    public void verifySuggestionsAreSortedBasedOn(String sortOder) {
+        Assert.assertTrue(activitiesListPage.verifySort(sortOder));
     }
 
     @When("user clicks on book now button on a package that contains {string}")
